@@ -1,7 +1,7 @@
 import requests
 import time
 
-
+# Extract Song Names from that Specific Date
 from bs4 import BeautifulSoup
 date=input("Enter the Date at which You want the Songs For(keep Format as yyyy-mm-dd):")
 response=requests.get(url=f"https://www.billboard.com/charts/hot-100/{date}/")
@@ -14,6 +14,7 @@ spec=soup.find_all(name="h3", class_="c-title")
 answer=[spec.getText().replace('\n', '').replace('\t', '').strip() for spec in songs if spec.getText().strip() != '']
 print(answer)
 
+# Authentication
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
@@ -31,6 +32,7 @@ sp = spotipy.Spotify(
 user_id = sp.current_user()["id"]
 print(user_id)
 
+# Collecting Uris
 song_uris = []
 year = date.split("-")[0]
 
